@@ -1,6 +1,4 @@
-# Find movie app
-
-## Find movie using IMDb API
+# Find movie app using IMDb API
 
 # Getting Started with Create React App
 
