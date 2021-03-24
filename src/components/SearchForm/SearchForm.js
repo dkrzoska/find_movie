@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import './searchForm.scss';
 
 function SearchForm({question}) {
 
@@ -10,9 +11,8 @@ const handleChangeSearchFraze = (ev) => {
 
 const sendSearchData = (ev) => {
     ev.preventDefault();
-    const searchData = searchFraze
-    console.log(searchData);
-    question(searchData);
+    // const searchData = searchFraze;
+    question(searchFraze);
 }
 
 useEffect(() => {
@@ -20,9 +20,10 @@ useEffect(() => {
 });
 
     return (
-        <div>
+        <div className='searchform'>
             <form onSubmit = {sendSearchData}>
-                <p>Search <input onChange={handleChangeSearchFraze} value={searchFraze}></input></p>
+                <p>Search</p>
+                <p><input onChange={handleChangeSearchFraze} value={searchFraze}></input></p>
                 <button>Szukaj</button>
             </form>
         </div>
