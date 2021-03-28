@@ -1,9 +1,10 @@
 .results {
+        position: relative;
         display: flex;
-        flex-direction: column;
-        // flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
+        // flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        // align-items: center;
 }
 .pagesList {
         display: flex;

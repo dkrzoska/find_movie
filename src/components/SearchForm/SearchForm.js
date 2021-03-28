@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import './searchForm.scss';
+import './SearchForm.scss';
 
 function SearchForm({question}) {
 
