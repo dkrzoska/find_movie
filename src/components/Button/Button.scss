@@ -1,0 +1,16 @@
+button {
+    // height: 30px;
+    // width: 100px;
+    background-color: var(--second);
+    border: 2px solid var(--second);
+    border-radius: 5px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    outline: none;
+    &:hover {
+        background-color: var(--base);
+    }
+    &:active {
+        background-color: var(--second);
+    }
+}
