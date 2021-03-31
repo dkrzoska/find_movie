@@ -13,6 +13,24 @@ function SearchEngine() {
     const [arrayPages, setArrayPages] = useState([1]);
     const [showMovieInfo, setShowMovieInfo] = useState(false);
     const [movieInfo, setMovieInfo] = useState(false);
+    const [position, setPosition] = useState(0);
+
+    const next = () => {
+        let newPosition = position;
+        if (newPosition < arrayPages.length - 1) {
+            newPosition++;
+            setPosition(newPosition);
+        }
+        // console.log('position next= ' + newPosition);
+    }
+    const previous = () => {
+        let newPosition = position;
+        if (newPosition > 0) {
+            newPosition--;
+            setPosition(newPosition);
+        }
+        // console.log('position previous= ' + newPosition);
+    }
 
     const handleSetQuestion = (q) => {
         setQuestion(q);
@@ -23,6 +41,7 @@ function SearchEngine() {
     const handleChangePage = (ev) => {
         ev.preventDefault();
         setPage(ev.target.value);
+        setPosition(ev.target.value - 1);
     }
 
     const generatePages = (data2) => {
@@ -36,23 +55,23 @@ function SearchEngine() {
     }
 
     const fetchAllFindedMovies = () => {
-        fetch(`http://www.omdbapi.com/?s=${question}&page=${page}&plot=full&apikey=${API_KEY}`)
+        fetch(`https://www.omdbapi.com/?s=${question}&page=${page}&plot=full&apikey=${API_KEY}`)
             .then(resp => resp.json())
             .then(resp2 => {
                 setData(resp2.Search);
                 generatePages(resp2);
-                console.log(resp2);
+                // console.log(resp2);
             })
             .catch((err) => {
                 console.log(err);
             });
     }
     const fetchOneMovie = (imdbID) => {
-        fetch(`http://www.omdbapi.com/?i=${imdbID}&apikey=${API_KEY}`)
+        fetch(`https://www.omdbapi.com/?i=${imdbID}&apikey=${API_KEY}`)
             .then(resp => resp.json())
             .then(resp2 => {
                 setMovieInfo(resp2);
-                console.log(resp2);
+                // console.log(resp2);
                 // console.log(resp2.Ratings[0].Value);
             })
             .catch((err) => {
@@ -88,7 +107,10 @@ function SearchEngine() {
             {
                 data && <PagesList
                     arrayPages={arrayPages}
+                    position={position}
                     handleChangePage={handleChangePage}
+                    previous={previous}
+                    next={next}
                 />
             }
             {showMovieInfo && <InfoCard

@@ -1,25 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './PagesList.scss';
 import Button from '../Button/Button';
 
-function PagesList({ arrayPages, handleChangePage }) {
-    const [position, setPosition] = useState(0);
-    const next = () => {
-        let newPosition = position;
-        if (newPosition < arrayPages.length - 1) {
-            newPosition++;
-            setPosition(newPosition);
-        }
-        // console.log('position next= ' + newPosition);
-    }
-    const previous = () => {
-        let newPosition = position;
-        if (newPosition > 0) {
-            newPosition--;
-            setPosition(newPosition);
-        }
-        // console.log('position previous= ' + newPosition);
-    }
+function PagesList({ arrayPages, position, handleChangePage, previous, next }) {
+    console.log(position);
     return (
         <div className='pagesList'>
             <button
