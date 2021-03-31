@@ -3,6 +3,7 @@ import './SearchEngine.scss';
 import SearchForm from '../SearchForm/SearchForm';
 import MovieCard from '../MovieCard/MovieCard';
 import InfoCard from '../InfoCard/InfoCard';
+import PagesList from '../PagesList/PagesList';
 
 function SearchEngine() {
     const API_KEY = 'f4c07afc';
@@ -22,7 +23,6 @@ function SearchEngine() {
     const handleChangePage = (ev) => {
         ev.preventDefault();
         setPage(ev.target.value);
-        // console.log('jest');
     }
 
     const generatePages = (data2) => {
@@ -53,6 +53,7 @@ function SearchEngine() {
             .then(resp2 => {
                 setMovieInfo(resp2);
                 console.log(resp2);
+                // console.log(resp2.Ratings[0].Value);
             })
             .catch((err) => {
                 console.log(err);
@@ -82,23 +83,26 @@ function SearchEngine() {
                     )
                     // data && data.map((dt, i) => <p key={i}>{dt.Title}</p>)
                 }
-                {showMovieInfo && <InfoCard
-                    poster={movieInfo.Poster}
-                    showInfo = {setShowMovieInfo}
-                    movieInfo={setMovieInfo}
-                    title={movieInfo.Title}
-                    year={movieInfo.Year}
-                    genre={movieInfo.Genre}
-                    actors={movieInfo.Actors}
-                    plot={movieInfo.Plot}
-                    imdbID={movieInfo.imdbID}
-                />}
+
             </div>
-            <div className='pagesList'>
-                {
-                    data && arrayPages.map((dt, i) => <button onClick={handleChangePage} key={i} value={i + 1}>{dt}</button>)
-                }
-            </div>
+            {
+                data && <PagesList
+                    arrayPages={arrayPages}
+                    handleChangePage={handleChangePage}
+                />
+            }
+            {showMovieInfo && <InfoCard
+                poster={movieInfo.Poster}
+                showInfo={setShowMovieInfo}
+                movieInfo={setMovieInfo}
+                title={movieInfo.Title}
+                year={movieInfo.Year}
+                ratings={movieInfo.imdbRating}
+                genre={movieInfo.Genre}
+                actors={movieInfo.Actors}
+                plot={movieInfo.Plot}
+                imdbID={movieInfo.imdbID}
+            />}
         </>)
 }
 

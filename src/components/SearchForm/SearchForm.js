@@ -1,30 +1,34 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import './SearchForm.scss';
+import Button from '../Button/Button';
 
-function SearchForm({question}) {
+function SearchForm({ question }) {
 
-const [searchFraze, setSearchFraze] = useState('');
+    const [searchFraze, setSearchFraze] = useState('');
 
-const handleChangeSearchFraze = (ev) => {
-    setSearchFraze(ev.target.value);
-}
+    const handleChangeSearchFraze = (ev) => {
+        setSearchFraze(ev.target.value);
+    }
 
-const sendSearchData = (ev) => {
-    ev.preventDefault();
-    // const searchData = searchFraze;
-    question(searchFraze);
-}
+    const sendSearchData = (ev) => {
+        ev.preventDefault();
+        // const searchData = searchFraze;
+        question(searchFraze);
+    }
 
-useEffect(() => {
+    useEffect(() => {
 
-});
+    });
 
     return (
         <div className='searchform'>
-            <form onSubmit = {sendSearchData}>
-                <p>Search</p>
-                <p><input onChange={handleChangeSearchFraze} value={searchFraze}></input></p>
-                <button>Szukaj</button>
+            <form onSubmit={sendSearchData}>
+                <input placeholder='search phrase' onChange={handleChangeSearchFraze} value={searchFraze}></input>
+                <Button
+                    text='Szukaj'
+                    height='30px'
+                    width='100px'
+                />
             </form>
         </div>
     )
