@@ -1,1 +1,1 @@
-# Find movie app using OMDb API
+# Find movie app using OMDb free API
